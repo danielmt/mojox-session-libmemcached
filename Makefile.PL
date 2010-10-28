@@ -14,7 +14,7 @@ WriteMakefile(
     PREREQ_PM => {
         'Test::More'              => 0,
         'Mojolicious'             => '0.999931',
-        'MojoX::Session'          => '0.20',
+        'MojoX::Session'          => '0.21',
         'Memcached::libmemcached' => '0.4402',
         'Storable'                => 0,
         'MIME::Base64'            => 0,
