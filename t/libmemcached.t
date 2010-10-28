@@ -11,7 +11,7 @@ plan tests => 10;
 
 use_ok('MojoX::Session');
 
-my $session = MojoX::Session->new(store => [libmemcached => {server => 'localhost:11211'}]);
+my $session = MojoX::Session->new(store => [libmemcached => { servers => ['localhost:11211'] }]);
 
 # create
 my $sid = $session->create;
