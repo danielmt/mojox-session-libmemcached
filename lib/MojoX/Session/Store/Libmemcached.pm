@@ -140,7 +140,7 @@ Delete session.
 
 =head1 AUTHOR
 
-dostioffski, C<daniel.mts@gmail.org>.
+dostioffski, C<daniel.mts@gmail.com>.
 
 =head1 COPYRIGHT
 
