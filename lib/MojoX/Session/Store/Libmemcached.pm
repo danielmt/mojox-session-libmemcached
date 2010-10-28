@@ -20,8 +20,6 @@ sub new {
     my $self = $class->SUPER::new(@_);
     bless $self, $class;
 
-    use Data::Dumper;
-
     my $servers = $self->servers;
 
     foreach my $server (@$servers) {

@@ -1,5 +1,8 @@
 Revision history for MojoX-Session-Store-Libmemcached
 
+0.16   2010-10-28
+        - data-dumper not needed here anymore (leftover)
+
 0.15   2010-10-28
         - handle changed to _handle, for internal use.
         - server changed to servers, providing the option to use
