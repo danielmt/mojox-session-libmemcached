@@ -1,5 +1,5 @@
 package MojoX::Session::Store::Libmemcached;
-$MojoX::Session::Store::Libmemcached::VERSION = 0.15;
+$MojoX::Session::Store::Libmemcached::VERSION = 0.16;
 
 use strict;
 use warnings;

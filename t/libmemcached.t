@@ -5,8 +5,6 @@ BEGIN {
     plan skip_all => "Memcached::libmemcached is required to run this test" if $@;
 }
 
-use lib 't/lib';
-
 plan tests => 10;
 
 use_ok('MojoX::Session');
