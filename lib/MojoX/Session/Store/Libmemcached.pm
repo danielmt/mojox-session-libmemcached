@@ -1,11 +1,12 @@
 package MojoX::Session::Store::Libmemcached;
-$MojoX::Session::Store::Libmemcached::VERSION = 0.17;
+$MojoX::Session::Store::Libmemcached::VERSION = 0.18;
 
 use strict;
 use warnings;
 
 use base 'MojoX::Session::Store';
 
+use Carp qw(carp confess cluck);
 use Memcached::libmemcached;
 use MIME::Base64;
 use Storable qw/nfreeze thaw/;
@@ -23,13 +24,26 @@ sub new {
     my $servers = ref $self->servers ?
         $self->servers : [ split(/ /, $self->servers) ];
 
+    my $connected;
+
     foreach my $server (@$servers) {
         my ($host, $port) = split(/:/, $server);
 
-        unless ($self->_handle->memcached_server_add($host, $port)) {
-            print STDERR "failed to add server $host:$port\n";
+        if ($host && $port) {
+            if ($self->_handle->memcached_server_add($host, $port)) {
+                $connected = 1;
+            }
+            else {
+                carp "Error: failed to add server $host:$port\n";
+            }
+        }
+        else {
+            confess "Error: invalid server: $host:$port\n";
         }
     }
+
+    confess "Error: no usable server(s) found:\n"
+        unless $connected;
 
     return $self;
 }
