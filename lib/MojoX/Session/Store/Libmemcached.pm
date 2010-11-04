@@ -1,5 +1,5 @@
 package MojoX::Session::Store::Libmemcached;
-$MojoX::Session::Store::Libmemcached::VERSION = 0.16;
+$MojoX::Session::Store::Libmemcached::VERSION = 0.17;
 
 use strict;
 use warnings;
@@ -10,7 +10,7 @@ use Memcached::libmemcached;
 use MIME::Base64;
 use Storable qw/nfreeze thaw/;
 
-__PACKAGE__->attr('servers' => sub { [ 'localhost:11211' ] });
+__PACKAGE__->attr('servers');
 __PACKAGE__->attr('_handle' => sub { Memcached::libmemcached->new });
 __PACKAGE__->attr('___expiration___');
 
@@ -20,7 +20,8 @@ sub new {
     my $self = $class->SUPER::new(@_);
     bless $self, $class;
 
-    my $servers = $self->servers;
+    my $servers = ref $self->servers ?
+        $self->servers : [ split(/ /, $self->servers) ];
 
     foreach my $server (@$servers) {
         my ($host, $port) = split(/:/, $server);
@@ -116,7 +117,7 @@ L<MojoX::Session::Store::Libmemcached> implements the following attributes.
 
 =head2 C<servers>
 
-Arrayref of servers, in the format host:port.
+Array or string (separated by space) of servers, in the format host:port.
 
 =head1 METHODS
 
