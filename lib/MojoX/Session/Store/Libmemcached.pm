@@ -6,7 +6,7 @@ use warnings;
 
 use base 'MojoX::Session::Store';
 
-use Carp qw(carp confess cluck);
+use Carp qw(carp confess);
 use Memcached::libmemcached;
 use MIME::Base64;
 use Storable qw/nfreeze thaw/;
