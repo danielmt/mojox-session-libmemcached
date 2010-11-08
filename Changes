@@ -1,5 +1,8 @@
 Revision history for MojoX-Session-Store-Libmemcached
 
+0.19   2010-11-08
+        - Added another connection check (empty servers)
+
 0.18   2010-11-04
         - Added connection check (was failing silently without servers)
 

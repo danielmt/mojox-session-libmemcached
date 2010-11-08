@@ -1,5 +1,5 @@
 package MojoX::Session::Store::Libmemcached;
-$MojoX::Session::Store::Libmemcached::VERSION = 0.18;
+$MojoX::Session::Store::Libmemcached::VERSION = 0.19;
 
 use strict;
 use warnings;
@@ -20,6 +20,9 @@ sub new {
 
     my $self = $class->SUPER::new(@_);
     bless $self, $class;
+
+    confess 'The servers param is mandatory.'
+        unless $self->servers;
 
     my $servers = ref $self->servers ?
         $self->servers : [ split(/ /, $self->servers) ];
